@@ -1,7 +1,9 @@
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.Properties;
 
 public class DB {
@@ -15,7 +17,7 @@ public class DB {
                 prop.load(input);
                 System.out.println(prop.getProperty("url"));
                 connection = DriverManager.getConnection(prop.getProperty("url"), prop.getProperty("user"), prop.getProperty("password"));
-            } catch (Exception e) {
+            } catch (SQLException | IOException e) {
                 e.printStackTrace();
             }
         }
