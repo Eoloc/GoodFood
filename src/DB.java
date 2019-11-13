@@ -12,6 +12,8 @@ public class DB {
             try {
                 InputStream input = new FileInputStream("config.properties");
                 Properties prop = new Properties();
+                prop.load(input);
+                System.out.println(prop.getProperty("url"));
                 connection = DriverManager.getConnection(prop.getProperty("url"), prop.getProperty("user"), prop.getProperty("password"));
             } catch (Exception e) {
                 e.printStackTrace();
