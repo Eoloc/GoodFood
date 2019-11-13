@@ -11,27 +11,37 @@ public class Main {
             e.printStackTrace();
         }
         JFrame f = new JFrame("GoodFood");
-        JPanel panel = new JPanel();
-        panel.setLayout(new BorderLayout());
-        panel.setPreferredSize(new Dimension(800,600));
+        JPanel main = new JPanel();
+        main.setLayout(new BorderLayout());
+        main.setPreferredSize(new Dimension(800,600));
 
         VueConsole output = new VueConsole("console");
 
-        JPanel boutons = new JPanel();
-        JButton q1 = new JButton("Question 1");
-        q1.addActionListener(new ActionListener() {
+        JPanel question1 = new JPanel();
+        JButton exe1 = new JButton("Executer");
+        exe1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new Q1(output);
             }
         });
-        boutons.add(q1);
+        question1.add(exe1);
 
 
-        panel.add(boutons, BorderLayout.NORTH);
-        panel.add(output, BorderLayout.SOUTH);
 
-        f.setContentPane(panel);
+        JPanel question2 = new JPanel();
+
+
+        JTabbedPane tabs = new JTabbedPane();
+        tabs.addTab("Question 1", question1);
+        tabs.addTab("Question 2", question2);
+
+
+        //panel.add(boutons, BorderLayout.NORTH);
+        main.add(tabs, BorderLayout.NORTH);
+        main.add(output, BorderLayout.SOUTH);
+
+        f.setContentPane(main);
         f.pack();
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.setVisible(true);
