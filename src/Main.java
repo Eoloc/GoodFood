@@ -17,18 +17,7 @@ public class Main {
 
         VueConsole output = new VueConsole("console");
 
-        JPanel question1 = new JPanel();
-        JButton exe1 = new JButton("Executer");
-        exe1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new Q1(output);
-            }
-        });
-        question1.add(exe1);
-
-
-
+        JPanel question1 = new Q1(output);
         JPanel question2 = new JPanel();
 
 
