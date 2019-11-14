@@ -1,0 +1,49 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class Main {
+    public static void main(String[] args) {
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
+            e.printStackTrace();
+        }
+        JFrame f = new JFrame("GoodFood");
+        JPanel main = new JPanel();
+        main.setLayout(new BorderLayout());
+        main.setPreferredSize(new Dimension(800,600));
+
+        VueConsole output = new VueConsole("console");
+
+        JPanel question1 = new JPanel();
+        JButton exe1 = new JButton("Executer");
+        exe1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new Q1(output);
+            }
+        });
+        question1.add(exe1);
+
+
+
+        JPanel question2 = new JPanel();
+
+
+        JTabbedPane tabs = new JTabbedPane();
+        tabs.addTab("Question 1", question1);
+        tabs.addTab("Question 2", question2);
+
+
+        //panel.add(boutons, BorderLayout.NORTH);
+        main.add(tabs, BorderLayout.NORTH);
+        main.add(output, BorderLayout.SOUTH);
+
+        f.setContentPane(main);
+        f.pack();
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        f.setVisible(true);
+    }
+}
