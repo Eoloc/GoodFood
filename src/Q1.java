@@ -1,11 +1,32 @@
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class Q1 {
+public class Q1 extends JPanel {
+    private VueConsole console;
 
-    public Q1(VueConsole console) {
+    public Q1(VueConsole vc) {
+        super();
+        console = vc;
+
+        JLabel titre = new JLabel("Question 1");
+        add(titre);
+
+        JButton exe = new JButton("Executer");
+        exe.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                executer();
+            }
+        });
+        add(exe);
+    }
+
+    public void executer() {
         try {
             Connection co = DB.getConnection();
             Statement stmt = co.createStatement();
