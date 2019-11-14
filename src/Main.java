@@ -18,7 +18,7 @@ public class Main {
         VueConsole output = new VueConsole("console");
 
         JPanel question1 = new Q1(output);
-        JPanel question2 = new JPanel();
+        JPanel question2 = new Q2(output);
 
 
         JTabbedPane tabs = new JTabbedPane();
