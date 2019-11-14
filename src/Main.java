@@ -1,7 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class Main {
     public static void main(String[] args) {
@@ -26,7 +24,6 @@ public class Main {
         tabs.addTab("Question 2", question2);
 
 
-        //panel.add(boutons, BorderLayout.NORTH);
         main.add(tabs, BorderLayout.NORTH);
         main.add(output, BorderLayout.SOUTH);
 
