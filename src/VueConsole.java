@@ -8,6 +8,7 @@ public class VueConsole extends JTextArea {
 
     public VueConsole(String text) {
         super(text);
+        setEditable(false);
     }
 
 }

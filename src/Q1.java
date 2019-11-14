@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -12,21 +13,30 @@ public class Q1 extends JPanel {
     public Q1(VueConsole vc) {
         super();
         console = vc;
-
+        setLayout(new BorderLayout());
         JLabel titre = new JLabel("Question 1");
-        add(titre);
+        add(titre, BorderLayout.NORTH);
+
+        JPanel input = new JPanel(new GridLayout(1,4));
+        JTextField dateDeb = new JTextField();
+        JTextField dateFin = new JTextField("dd/mm/yyyy");
+        input.add(new JLabel("Date début :", SwingConstants.RIGHT));
+        input.add(dateDeb);
+        input.add(new JLabel("Date fin :", SwingConstants.RIGHT));
+        input.add(dateFin);
+        add(input, BorderLayout.CENTER);
 
         JButton exe = new JButton("Executer");
         exe.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                executer();
+                executer(dateDeb.getText(), dateFin.getText());
             }
         });
-        add(exe);
+        add(exe, BorderLayout.SOUTH);
     }
 
-    public void executer() {
+    public void executer(String dateDeb, String dateFin) {
         try {
             Connection co = DB.getConnection();
             Statement stmt = co.createStatement();
@@ -43,7 +53,8 @@ public class Q1 extends JPanel {
             }
             rs.close();
             stmt.close();
-            console.setText(res.replaceFirst("\\s++$", ""));
+            console.setText(dateDeb + " - " + dateFin);
+            //console.setText(res.replaceFirst("\\s++$", ""));
         } catch (SQLException e) {
             e.printStackTrace();
         }
