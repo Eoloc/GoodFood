@@ -17,12 +17,12 @@ public class Main {
 
         JPanel question1 = new Q1(output);
         JPanel question2 = new Q2(output);
-
+        JPanel question3 = new Q3(output);
 
         JTabbedPane tabs = new JTabbedPane();
         tabs.addTab("Question 1", question1);
         tabs.addTab("Question 2", question2);
-
+        tabs.addTab("Question 3", question3);
 
         main.add(tabs, BorderLayout.NORTH);
         main.add(output, BorderLayout.SOUTH);

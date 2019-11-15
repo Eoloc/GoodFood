@@ -16,7 +16,6 @@ public class Q2 extends JPanel{
 
         JPanel input = new JPanel(new GridLayout(1,4));
         JTextField dateDeb = new JTextFieldHint("dd/mm/yyyy");
-        dateDeb.setForeground(Color.GRAY);
         JTextField dateFin = new JTextFieldHint("dd/mm/yyyy");
 
         input.add(new JLabel("Date début :", SwingConstants.RIGHT));
