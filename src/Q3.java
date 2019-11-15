@@ -11,6 +11,7 @@ public class Q3 extends JPanel {
         super();
         console = vc;
         setLayout(new BorderLayout());
+        JPanel top = new JPanel(new BorderLayout());
         JLabel titre = new JLabel("Liste des serveurs qui ont servi cette table au cours de cette période", SwingConstants.CENTER);
         add(titre, BorderLayout.NORTH);
 
@@ -34,8 +35,12 @@ public class Q3 extends JPanel {
             }
         });
 
-        add(input, BorderLayout.CENTER);
-        add(exe, BorderLayout.SOUTH);
+        top.add(titre, BorderLayout.NORTH);
+        top.add(input, BorderLayout.SOUTH);
+        JPanel panel = new JPanel(new BorderLayout());
+        panel.add(top, BorderLayout.NORTH);
+        panel.add(exe, BorderLayout.SOUTH);
+        add(panel, BorderLayout.NORTH);
     }
 
     public void executer(String table, String dateDeb, String dateFin) {

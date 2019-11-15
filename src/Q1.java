@@ -11,8 +11,8 @@ public class Q1 extends JPanel {
         super();
         console = vc;
         setLayout(new BorderLayout());
+        JPanel top = new JPanel(new BorderLayout());
         JLabel titre = new JLabel("Liste des plats servis au cours de cette période", SwingConstants.CENTER);
-        add(titre, BorderLayout.NORTH);
 
         JPanel input = new JPanel(new GridLayout(1,4));
         JTextField dateDeb = new JTextFieldHint("dd/mm/yyyy");
@@ -31,8 +31,12 @@ public class Q1 extends JPanel {
             }
         });
 
-        add(input, BorderLayout.CENTER);
-        add(exe, BorderLayout.SOUTH);
+        top.add(titre, BorderLayout.NORTH);
+        top.add(input, BorderLayout.SOUTH);
+        JPanel panel = new JPanel(new BorderLayout());
+        panel.add(top, BorderLayout.NORTH);
+        panel.add(exe, BorderLayout.SOUTH);
+        add(panel, BorderLayout.NORTH);
     }
 
     public void executer(String dateDeb, String dateFin) {
