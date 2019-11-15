@@ -7,9 +7,9 @@ import java.sql.*;
 public class Q6 extends JPanel {
     private VueConsole console;
 
-    public Q6(VueConsole vc) {
+    public Q6() {
         super();
-        console = vc;
+        console = new VueConsole("console");
         setLayout(new BorderLayout());
         JPanel top = new JPanel(new BorderLayout());
         JLabel titre = new JLabel("Calcul du montant total de cette commande et mise à jour de la table Commande", SwingConstants.CENTER);
@@ -35,6 +35,7 @@ public class Q6 extends JPanel {
         panel.add(top, BorderLayout.NORTH);
         panel.add(exe, BorderLayout.SOUTH);
         add(panel, BorderLayout.NORTH);
+        add(console, BorderLayout.SOUTH);
     }
 
     public void executer(String commande) {

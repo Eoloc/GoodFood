@@ -7,9 +7,9 @@ import java.sql.*;
 public class Q5 extends JPanel {
     private VueConsole console;
 
-    public Q5(VueConsole vc) {
+    public Q5() {
         super();
-        console = vc;
+        console = new VueConsole("console");
         setLayout(new BorderLayout());
         JPanel top = new JPanel(new BorderLayout());
         JLabel titre = new JLabel("Serveur n'ayant pas réalisé de chiffre d'affaire au cours de cette période", SwingConstants.CENTER);
@@ -38,6 +38,7 @@ public class Q5 extends JPanel {
         panel.add(top, BorderLayout.NORTH);
         panel.add(exe, BorderLayout.SOUTH);
         add(panel, BorderLayout.NORTH);
+        add(console, BorderLayout.SOUTH);
     }
 
     public void executer(String dateDeb, String dateFin) {

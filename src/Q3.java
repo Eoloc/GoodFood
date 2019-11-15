@@ -7,9 +7,9 @@ import java.sql.*;
 public class Q3 extends JPanel {
     private VueConsole console;
 
-    public Q3(VueConsole vc) {
+    public Q3() {
         super();
-        console = vc;
+        console = new VueConsole("console");
         setLayout(new BorderLayout());
         JPanel top = new JPanel(new BorderLayout());
         JLabel titre = new JLabel("Liste des serveurs qui ont servi cette table au cours de cette période", SwingConstants.CENTER);
@@ -41,6 +41,7 @@ public class Q3 extends JPanel {
         panel.add(top, BorderLayout.NORTH);
         panel.add(exe, BorderLayout.SOUTH);
         add(panel, BorderLayout.NORTH);
+        add(console, BorderLayout.SOUTH);
     }
 
     public void executer(String table, String dateDeb, String dateFin) {

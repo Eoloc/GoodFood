@@ -2,11 +2,9 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Q7 extends JPanel{
-    private VueConsole console;
 
-    public Q7(VueConsole vc) {
+    public Q7() {
         super();
-        console = vc;
         setLayout(new BorderLayout());
         JLabel titre = new JLabel("Triggers", SwingConstants.CENTER);
         add(titre, BorderLayout.NORTH);
