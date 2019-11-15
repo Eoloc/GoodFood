@@ -19,12 +19,14 @@ public class Main {
         JPanel question2 = new Q2(output);
         JPanel question3 = new Q3(output);
         JPanel question4 = new Q4(output);
+        JPanel question5 = new Q5(output);
 
         JTabbedPane tabs = new JTabbedPane();
         tabs.addTab("Question 1", question1);
         tabs.addTab("Question 2", question2);
         tabs.addTab("Question 3", question3);
         tabs.addTab("Question 4", question4);
+        tabs.addTab("Question 5", question5);
 
         main.add(tabs, BorderLayout.NORTH);
         main.add(output, BorderLayout.SOUTH);
