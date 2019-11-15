@@ -46,7 +46,7 @@ public class Q2 extends JPanel{
                     "                      FROM plat\n" +
                     "                               INNER JOIN contient ON plat.numplat = contient.numplat\n" +
                     "                               INNER JOIN commande ON contient.numcom = commande.numcom\n" +
-                    "                      WHERE datcom BETWEEN to_date(?, 'dd/mm/yyyy') AND to_date(?, 'dd/mm/yyyy')\n;";
+                    "                      WHERE datcom BETWEEN to_date(?, 'dd/mm/yyyy') AND to_date(?, 'dd/mm/yyyy'))\n";
             PreparedStatement ps = co.prepareStatement(req);
             ps.setString(1, dateDeb); // 10/09/2016
             ps.setString(2, dateFin); // 11/09/2016
@@ -58,6 +58,8 @@ public class Q2 extends JPanel{
             rs.close();
             stmt.close();
             console.setText(res.replaceFirst("\\s++$", ""));
+        } catch (SQLDataException e) {
+            console.setText("Erreur : paramètres non valides");
         } catch (SQLException e) {
             e.printStackTrace();
         }
