@@ -20,6 +20,7 @@ public class Main {
         JPanel question3 = new Q3(output);
         JPanel question4 = new Q4(output);
         JPanel question5 = new Q5(output);
+        JPanel question6 = new Q6(output);
 
         JTabbedPane tabs = new JTabbedPane();
         tabs.addTab("Question 1", question1);
@@ -27,6 +28,7 @@ public class Main {
         tabs.addTab("Question 3", question3);
         tabs.addTab("Question 4", question4);
         tabs.addTab("Question 5", question5);
+        tabs.addTab("Question 6", question6);
 
         main.add(tabs, BorderLayout.NORTH);
         main.add(output, BorderLayout.SOUTH);
