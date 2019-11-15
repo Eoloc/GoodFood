@@ -2,53 +2,55 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class Q2 extends JPanel{
     private VueConsole console;
-    private JTextField date1;
-    private JTextField date2;
 
     public Q2(VueConsole vc) {
         super();
         console = vc;
+        setLayout(new BorderLayout());
+        JLabel titre = new JLabel("Liste des plats jamais servi au cours de cette période", SwingConstants.CENTER);
+        add(titre, BorderLayout.NORTH);
 
-        JLabel titre = new JLabel("Question 2");
-        add(titre);
+        JPanel input = new JPanel(new GridLayout(1,4));
+        JTextField dateDeb = new JTextFieldHint("dd/mm/yyyy");
+        dateDeb.setForeground(Color.GRAY);
+        JTextField dateFin = new JTextFieldHint("dd/mm/yyyy");
+
+        input.add(new JLabel("Date début :", SwingConstants.RIGHT));
+        input.add(dateDeb);
+        input.add(new JLabel("Date fin :", SwingConstants.RIGHT));
+        input.add(dateFin);
 
         JButton exe = new JButton("Executer");
-        date1 = new JTextField(10);
-        date2 = new JTextField(10);
-        //date1.setPreferredSize(new Dimension(200, 30));
-        add(date1);
-        add(date2);
         exe.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                executer();
+                executer(dateDeb.getText(), dateFin.getText());
             }
         });
-        add(exe);
+
+        add(input, BorderLayout.CENTER);
+        add(exe, BorderLayout.SOUTH);
     }
 
-    public void executer() {
+    public void executer(String dateDeb, String dateFin) {
         try {
-            String val1 = date1.getText();
-            String val2 = date2.getText();
             Connection co = DB.getConnection();
             Statement stmt = co.createStatement();
-            String req = "SELECT NUMPLAT, LIBELLE\n" +
-                    "FROM PLAT\n" +
-                    "WHERE NUMPLAT NOT IN (SELECT DISTINCT PLAT.NUMPLAT\n" +
-                    "                      FROM PLAT\n" +
-                    "                               INNER JOIN CONTIENT ON PLAT.NUMPLAT = CONTIENT.NUMPLAT\n" +
-                    "                               INNER JOIN COMMANDE ON CONTIENT.NUMCOM = COMMANDE.NUMCOM\n" +
-                    "                      WHERE DATCOM BETWEEN TO_DATE(?) AND TO_DATE(?));";
-            // ajouter
-            ResultSet rs = stmt.executeQuery(req);
+            String req = "SELECT numplat, libelle\n" +
+                    "FROM plat\n" +
+                    "WHERE numplat NOT IN (SELECT DISTINCT plat.numplat\n" +
+                    "                      FROM plat\n" +
+                    "                               INNER JOIN contient ON plat.numplat = contient.numplat\n" +
+                    "                               INNER JOIN commande ON contient.numcom = commande.numcom\n" +
+                    "                      WHERE datcom BETWEEN to_date(?, 'dd/mm/yyyy') AND to_date(?, 'dd/mm/yyyy')\n;";
+            PreparedStatement ps = co.prepareStatement(req);
+            ps.setString(1, dateDeb); // 10/09/2016
+            ps.setString(2, dateFin); // 11/09/2016
+            ResultSet rs = ps.executeQuery();
             String res = "NumPlat   Libelle\n";
             while (rs.next()) {
                 res += rs.getInt(1) + " | " + rs.getString(2) + "\n";
