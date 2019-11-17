@@ -6,9 +6,17 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
+/**
+ * connection Singleton
+ */
 public class DB {
+    /** inique instance connection */
     private static Connection connection;
 
+    /**
+     * return l'unique onstance connection
+     * @return instance connection
+     */
     public static synchronized Connection getConnection() {
         if (connection == null) {
             try {

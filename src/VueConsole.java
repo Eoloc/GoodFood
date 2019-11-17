@@ -1,5 +1,8 @@
 import javax.swing.*;
 
+/**
+ * affiche la console
+ */
 public class VueConsole extends JTextArea {
 
     public VueConsole() {

@@ -1,6 +1,11 @@
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Onglet de la question 7
+ *
+ * commentaire similaire à la question 1
+ */
 public class Q7 extends JPanel{
 
     public Q7() {

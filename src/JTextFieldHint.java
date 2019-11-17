@@ -3,9 +3,14 @@ import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 
+/**
+ * ajoute un text indicatif dans les JTextField quand il sont vide et sans focus du curseur
+ */
 class JTextFieldHint extends JTextField implements FocusListener {
 
+    /** texte indice à afficher */
     private final String hint;
+    /** indique si l'incide doit etre afficher ou non */
     private boolean showHint;
 
     public JTextFieldHint(final String hint) {
@@ -16,6 +21,10 @@ class JTextFieldHint extends JTextField implements FocusListener {
         super.addFocusListener(this);
     }
 
+    /**
+     * supprime l'indice si la case est vide et a le focus
+     * @param e
+     */
     @Override
     public void focusGained(FocusEvent e) {
         if(this.getText().isEmpty()) {
@@ -24,6 +33,11 @@ class JTextFieldHint extends JTextField implements FocusListener {
             showHint = false;
         }
     }
+
+    /**
+     * affiche l'indice si la case est vide et pert le focus
+     * @param e
+     */
     @Override
     public void focusLost(FocusEvent e) {
         if(this.getText().isEmpty()) {
@@ -33,6 +47,9 @@ class JTextFieldHint extends JTextField implements FocusListener {
         }
     }
 
+    /**
+     * retourne une chaine vide si l'incide est affiché
+     */
     @Override
     public String getText() {
         return showHint ? "" : super.getText();

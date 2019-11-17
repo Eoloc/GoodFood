@@ -4,6 +4,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.*;
 
+/**
+ * Onglet de la question 6
+ *
+ * commentaire similaire à la question 1
+ */
 public class Q6 extends JPanel {
     private VueConsole console;
 
@@ -38,10 +43,9 @@ public class Q6 extends JPanel {
         add(console, BorderLayout.SOUTH);
     }
 
-    public void executer(String commande) {
+    private void executer(String commande) {
         try {
             Connection co = DB.getConnection();
-            Statement stmt = co.createStatement();
             // Calcul du montant total de la commande
             String req = "SELECT sum(prixunit * quantite) AS montant\n" +
                     "FROM contient INNER JOIN plat ON contient.numplat = plat.numplat\n" +
@@ -60,10 +64,9 @@ public class Q6 extends JPanel {
                 return;
             }
             rs.close();
-            stmt.close();
+            ps.close();
 
             // Update montant
-            stmt = co.createStatement();
             req = "UPDATE commande\n" +
                     "SET montcom = ?\n" +
                     "WHERE numcom = ?";
@@ -76,6 +79,7 @@ public class Q6 extends JPanel {
             } else if (resUpdate == 1) {
                 res += "Commmande mise à jour";
             }
+            ps.close();
 
             console.setText(res.replaceFirst("\\s++$", ""));
         } catch (SQLDataException e) {

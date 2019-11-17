@@ -3,6 +3,7 @@ import java.awt.*;
 
 public class Main {
     public static void main(String[] args) {
+        // essaie de charger le style graphique du systeme
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
@@ -11,8 +12,8 @@ public class Main {
         JFrame f = new JFrame("GoodFood");
         JPanel main = new JPanel();
         main.setLayout(new BorderLayout());
-        //main.setPreferredSize(new Dimension(800,600));
 
+        // création des onglets pour chaque question
         JPanel question1 = new Q1();
         JPanel question2 = new Q2();
         JPanel question3 = new Q3();
@@ -21,6 +22,7 @@ public class Main {
         JPanel question6 = new Q6();
         JPanel question7 = new Q7();
 
+        // ajout des onglets à l'interface
         JTabbedPane tabs = new JTabbedPane();
         tabs.addTab("Question 1", question1);
         tabs.addTab("Question 2", question2);

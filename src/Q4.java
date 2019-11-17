@@ -4,6 +4,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.*;
 
+/**
+ * Onglet de la question 4
+ *
+ * commentaire similaire à la question 1
+ */
 public class Q4 extends JPanel {
     private VueConsole console;
 
@@ -41,10 +46,9 @@ public class Q4 extends JPanel {
         add(console, BorderLayout.SOUTH);
     }
 
-    public void executer(String dateDeb, String dateFin) {
+    private void executer(String dateDeb, String dateFin) {
         try {
             Connection co = DB.getConnection();
-            Statement stmt = co.createStatement();
             String req = "SELECT DISTINCT nomserv, sum(prixunit*quantite) AS chiffre, count(UNIQUE commande.numcom) AS nbcom\n" +
                     "FROM commande\n" +
                     "       INNER JOIN affecter ON commande.numtab = affecter.numtab\n" +
@@ -64,7 +68,7 @@ public class Q4 extends JPanel {
                 res += rs.getString(1) + " | " + rs.getInt(2) + " | " + rs.getInt(3) + "\n";
             }
             rs.close();
-            stmt.close();
+            ps.close();
             console.setText(res.replaceFirst("\\s++$", ""));
         } catch (SQLDataException e) {
             console.setText("Erreur : paramètres non valides");

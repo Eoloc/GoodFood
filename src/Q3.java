@@ -4,6 +4,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.*;
 
+/**
+ * Onglet de la question 3
+ *
+ * commentaire similaire à la question 1
+ */
 public class Q3 extends JPanel {
     private VueConsole console;
 
@@ -44,10 +49,9 @@ public class Q3 extends JPanel {
         add(console, BorderLayout.SOUTH);
     }
 
-    public void executer(String table, String dateDeb, String dateFin) {
+    private void executer(String table, String dateDeb, String dateFin) {
         try {
             Connection co = DB.getConnection();
-            Statement stmt = co.createStatement();
             String req = "SELECT DISTINCT nomserv, datcom\n" +
                     "FROM commande\n" +
                     "       INNER JOIN affecter ON commande.numtab = affecter.numtab\n" +
@@ -64,7 +68,7 @@ public class Q3 extends JPanel {
                 res += rs.getString(1) + " | " + rs.getString(2) + "\n";
             }
             rs.close();
-            stmt.close();
+            ps.close();
             console.setText(res.replaceFirst("\\s++$", ""));
         } catch (SQLDataException e) {
             console.setText("Erreur : paramètres non valides");
