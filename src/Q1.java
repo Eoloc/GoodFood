@@ -16,7 +16,7 @@ public class Q1 extends JPanel {
      */
     public Q1() {
         super();
-        // creéation de la console
+        // création de la console
         console = new VueConsole("console");
         setLayout(new BorderLayout());
         JPanel top = new JPanel(new BorderLayout());
@@ -33,7 +33,7 @@ public class Q1 extends JPanel {
         input.add(new JLabel("Date fin :", SwingConstants.RIGHT));
         input.add(dateFin);
 
-        // création du bouton d'execution
+        // création du bouton d'exécution
         JButton exe = new JButton("Executer");
         exe.addActionListener(new ActionListener() {
             @Override
@@ -53,13 +53,13 @@ public class Q1 extends JPanel {
     }
 
     /**
-     * methode qui lance la requette SQL sur la base Oracle
+     * méthode qui lance la requête SQL sur la base Oracle
      * @param dateDeb date de début
      * @param dateFin date de fin
      */
     private void executer(String dateDeb, String dateFin) {
         try {
-            // recupère la connection
+            // récupère la connection
             Connection co = DB.getConnection();
             String req = "SELECT DISTINCT plat.numplat, libelle\n" +
                     "FROM commande\n" +
@@ -67,21 +67,21 @@ public class Q1 extends JPanel {
                     "       INNER JOIN plat ON contient.numplat = plat.numplat\n" +
                     "WHERE datcom BETWEEN to_date(?, 'dd/mm/yyyy') AND to_date(?, 'dd/mm/yyyy')\n" +
                     "ORDER BY numplat";
-            // créer la requete préparé
+            // créer la requête préparé
             PreparedStatement ps = co.prepareStatement(req);
-            // ajoute les parametres
+            // ajoute les paramètres
             ps.setString(1, dateDeb); // 10/09/2016
             ps.setString(2, dateFin); // 11/09/2016
-            // execute la requete et recupère le resultat
+            // exécute la requête et récupère le résultat
             ResultSet rs = ps.executeQuery();
             String res = "NumPlat   Libelle\n";
-            // lit le resultat ligne par ligne
+            // lit le résultat ligne par ligne
             while (rs.next()) {
                 res += rs.getInt(1) + " | " + rs.getString(2) + "\n";
             }
-            // fermuture du resultat
+            // fermeture du résultat
             rs.close();
-            // fermuture de la requete
+            // fermeture de la requête
             ps.close();
             // affichage dans la console
             console.setText(res.replaceFirst("\\s++$", "")); // supprime le white space à la fin

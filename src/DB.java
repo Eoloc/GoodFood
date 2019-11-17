@@ -10,11 +10,11 @@ import java.util.Properties;
  * connection Singleton
  */
 public class DB {
-    /** inique instance connection */
+    /** unique instance connection */
     private static Connection connection;
 
     /**
-     * return l'unique onstance connection
+     * return l'unique constance connection
      * @return instance connection
      */
     public static synchronized Connection getConnection() {
