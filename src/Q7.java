@@ -15,7 +15,7 @@ public class Q7 extends JPanel{
         JLabel l1 = new JLabel("Trigger 1 :");
         l1.setAlignmentX(Component.LEFT_ALIGNMENT);
         p.add(l1);
-        JTextArea t1 = new JTextArea("CREATE OR REPLACE TRIGGER ENREGISTREMENTAUDITER\n" +
+        JTextArea t1 = new JTextArea("CREATE OR REPLACE TRIGGER ENREGISTREMENT_AUDITER\n" +
                 "AFTER\n" +
                 "INSERT ON COMMANDE\n" +
                 "DECLARE\n" +
@@ -45,19 +45,18 @@ public class Q7 extends JPanel{
         JLabel l2 = new JLabel("Trigger 2 :");
         l2.setAlignmentX(Component.LEFT_ALIGNMENT);
         p.add(l2);
-        JTextArea t2 = new JTextArea("CREATE OR REPLACE TRIGGER LIMITEQUANTITEPLAT\n" +
+        JTextArea t2 = new JTextArea("CREATE OR REPLACE TRIGGER LIMITE_QUANTITE_PLAT\n" +
                 "BEFORE\n" +
                 "INSERT ON CONTIENT\n" +
                 "DECLARE\n" +
-                "\tv_nbperso COMMANDE.NBPERS%TYPE;\n" +
+                "    v_nbperso COMMANDE.NBPERS%TYPE;\n" +
                 "BEGIN\n" +
-                "\tSELECT NBPERS\n" +
-                "\tINTO v_nbperso\n" +
-                "\tFROM COMMANDE\n" +
-                "\tWHERE :NEW.NUMCOM = COMMANDE.NUMCOM;\n" +
-                "\t\n" +
+                "    SELECT NBPERS\n" +
+                "    INTO v_nbperso\n" +
+                "    FROM COMMANDE\n" +
+                "    WHERE :NEW.NUMCOM = COMMANDE.NUMCOM;\n" +
                 "    IF (:NEW.QUANTITE > v_nbperso) THEN\n" +
-                "    \t:NEW.QUANTITE := v_nbperso;\n" +
+                "        :NEW.QUANTITE := v_nbperso;\n" +
                 "    END IF;\n" +
                 "END;");
         t2.setEditable(false);
