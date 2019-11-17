@@ -18,6 +18,7 @@ public class Q7 extends JPanel{
         JTextArea t1 = new JTextArea("CREATE OR REPLACE TRIGGER ENREGISTREMENT_AUDITER\n" +
                 "AFTER\n" +
                 "INSERT ON COMMANDE\n" +
+                "FOR EACH ROW\n" +
                 "DECLARE\n" +
                 "    v_nbeuro NUMBER(6, 2);\n" +
                 "    v_numserv SERVEUR.NUMSERV%TYPE;\n" +
